@@ -1,5 +1,5 @@
 import unittest
-from main import exchange
+from app.main import exchange
 
 
 class TestExchange(unittest.TestCase):

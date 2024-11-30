@@ -67,9 +67,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Build Application
+      - name: Build Project
         run: |
-          echo "Building application..."  # Замініть на реальну команду для білду
+           python setup.py sdist bdist_wheel
 
   deploy:
     permissions:
@@ -84,7 +84,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: python-app
+          name: app
           path: .
 
       - name: 'Deploy to Azure Web App'
