@@ -27,12 +27,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install flake8
           pip install black
+      - name: Auto-fix with black
+        run: black .
 
       - name: Run Linter
         run: flake8 .
-
-      - name: Auto-fix with black
-        run: black .
 
   test:
     runs-on: ubuntu-latest
