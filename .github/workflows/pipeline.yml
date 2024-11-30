@@ -93,7 +93,7 @@ jobs:
         run: terraform init
 
       - name: Apply Terraform configuration
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve terraform
 
       - name: Deploy the Python application
         run: |
