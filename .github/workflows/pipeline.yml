@@ -98,4 +98,4 @@ jobs:
       - name: Deploy the Python application
         run: |
            zip -r app.zip app/ 
-          aws lambda update-function-code --function-name my-python-lambda --zip-file fileb://app.zip
+           aws lambda update-function-code --function-name my-python-lambda --zip-file fileb://app.zip
