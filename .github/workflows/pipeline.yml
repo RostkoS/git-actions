@@ -12,6 +12,7 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main'  
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -26,15 +27,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install flake8
           pip install black
-
-      - name: Run Linter
-        run: flake8 .
-      
       - name: Auto-fix with black
         run: black .
 
+      - name: Run Linter
+        run: flake8 .
+
   test:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main' 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -60,11 +61,20 @@ jobs:
           path: coverage.xml
 
   build:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
       - name: Build the application
         run: |
           zip -r app/main.zip app/main.py 
-  
+
   deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'  
+    steps:
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v1
         with:
