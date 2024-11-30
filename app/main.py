@@ -6,6 +6,15 @@ def exchange(amount, rate):
     return amount * rate
 
 
-if __name__ == "__main__":
-    print("Addition:", add(5, 3))
-    print("Currency Exchange:", exchange(100, 1.2))
+
+def lambda_handler(event, context):
+    addition_result = add(5, 3)
+    exchange_result = exchange(100, 1.2)
+
+    return {
+        "statusCode": 200,
+        "body": {
+            "Addition": addition_result,
+            "Currency Exchange": exchange_result
+        }
+    }
