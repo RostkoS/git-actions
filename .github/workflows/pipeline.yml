@@ -51,7 +51,7 @@ jobs:
 
       - name: Run Tests with Coverage
         run: |
-          pytest --cov=main --cov-report=xml --cov-fail-under=50
+          pytest --cov=app --cov-report=xml --cov-fail-under=50
 
       - name: Upload Test Coverage Report
         uses: actions/upload-artifact@v3
